@@ -1,0 +1,10 @@
+requests
+python-dotenv
+build
+twine
+setuptools>=61
+wheel
+<<<<<<< HEAD
+pytest
+=======
+>>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331

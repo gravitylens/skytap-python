@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skytap"
+version = "0.1.1"
+description = "Simple Python client for the Skytap REST API"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{name = "Skytap"}]
+license = {text = "MIT"}
+dependencies = ["requests", "python-dotenv"]
