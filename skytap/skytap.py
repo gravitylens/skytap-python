@@ -4,21 +4,14 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 from datetime import datetime
 import socket
-<<<<<<< HEAD
-<<<<<<< HEAD
-import os
-=======
-import time
-import csv
-import secrets
->>>>>>> 15ba77f... Add session and portal utilities
-=======
+
+
 import os
 import time
 import csv
 import secrets
 
->>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331
+
 
 import requests
 from dotenv import dotenv_values
@@ -510,8 +503,7 @@ class SkytapClient:
             "DELETE", f"/configurations/{config_id}/tags/{tag_id}"
         )
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     def get_bitly_url(self, long_url: str) -> str:
         """Return a Bitly shortened URL.
 
@@ -521,7 +513,7 @@ class SkytapClient:
         token = self.bitly_token
         if not token:
             raise ValueError("Bitly token is not set on the client")
-=======
+
     def get_bitly_url(self, long_url: str) -> str:
         """Return a Bitly shortened URL.
 
@@ -531,7 +523,7 @@ class SkytapClient:
         token = os.getenv("BITLY_AUTH_TOKEN")
         if not token:
             raise ValueError("BITLY_AUTH_TOKEN environment variable not set")
->>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331
+
         headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json",
@@ -548,8 +540,7 @@ class SkytapClient:
             return data.get("link", long_url)
         except Exception:
             return long_url
-<<<<<<< HEAD
-=======
+
     def get_bitly_url(self, long_url: str, token: Optional[str] = None) -> str:
         """Return a Bitly shortened URL or the original on failure."""
         auth = token or self.bitly_token
@@ -563,8 +554,6 @@ class SkytapClient:
             return resp.json().get("link", long_url)
         except Exception:
             return long_url
-=======
->>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331
 
     def get_share_password(self, length: int = 6) -> str:
         """Generate a random share password."""
@@ -757,11 +746,3 @@ class SkytapClient:
             "PUT", f"/configurations/{env_id}/networks/{network_id}", json=body
         )
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 15ba77f... Add session and portal utilities
-=======
->>>>>>> 0aadf62... Refactor SkytapClient to load bitly_token from .env and add test script
-=======
-      
->>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331
