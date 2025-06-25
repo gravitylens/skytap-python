@@ -2,6 +2,30 @@
 
 This package provides a simple Python interface to the Skytap REST API.
 
+## Installation
+
+```sh
+pip install https://github.com/gravitylens/skytap-python/releases/download/v0.1.1/cyberark_identity_library-0.1.1-py3-none-any.whl
+```
+
+## Setup
+
+Create a `.env` file in your project directory with:
+```
+skytap_username=your_username
+skytap_api_token=your_token
+bitly_token=your_bitly_token
+```
+
+## Usage
+
+```python
+from skytap.skytap import SkytapClient
+
+client = SkytapClient()
+print(client.get_departments())
+```
+
 Create a `.env` file containing your Skytap `username` and `password`. You may
 also include a `bitly_token` for URL shortening. Call `set_authorization()` to
 load these credentials before using other methods. The `.env` file is parsed
@@ -71,14 +95,7 @@ The `SkytapClient` class implements the following methods:
 - `connect_public_ip(vm_id, interface_id, public_ip)`
 - `publish_service(config_id, vm_id, interface_id, service_id, port)`
 - `remove_tag(config_id, tag_id)`
-<<<<<<< HEAD
-<<<<<<< HEAD
-- `get_bitly_url(long_url)`
-=======
 - `get_bitly_url(long_url, token=None)`
-=======
-- `get_bitly_url(long_url)`
->>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331
 - `get_share_password(length=6)`
 - `update_sharing_portal_password(env_id, portal_id, share_pw)`
 - `update_sharing_portal_access(env_id, access="run_and_use")`
@@ -94,7 +111,3 @@ The `SkytapClient` class implements the following methods:
 - `get_unassigned_public_ips(region="")`
 - `merge_arrays(array1, array2)`
 - `edit_subnet(env_id, network_id, subnet_cidr)`
-<<<<<<< HEAD
->>>>>>> 15ba77f... Add session and portal utilities
-=======
->>>>>>> 8f9d83d21254074bdbd440e31ad4900530ec3331
