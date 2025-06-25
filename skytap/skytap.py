@@ -137,6 +137,7 @@ class SkytapClient:
     def get_project_environments(self, project_id: str) -> Any:
         path = f"/projects/{project_id}/configurations"
         return self._request("GET", path)
+    
     def add_network_adapter(self, config_id: str, vm_id: str, nic_type: str = "default") -> Any:
         body = {"nic_type": nic_type}
         return self._request("POST", f"/configurations/{config_id}/vms/{vm_id}/interfaces", json=body)
@@ -503,44 +504,6 @@ class SkytapClient:
             "DELETE", f"/configurations/{config_id}/tags/{tag_id}"
         )
 
-
-    def get_bitly_url(self, long_url: str) -> str:
-        """Return a Bitly shortened URL.
-
-        Requires the bitly_token to be set on the client.
-        If the request fails, the original ``long_url`` is returned.
-        """
-        token = self.bitly_token
-        if not token:
-            raise ValueError("Bitly token is not set on the client")
-
-    def get_bitly_url(self, long_url: str) -> str:
-        """Return a Bitly shortened URL.
-
-        Requires the ``BITLY_AUTH_TOKEN`` environment variable to be set.
-        If the request fails, the original ``long_url`` is returned.
-        """
-        token = os.getenv("BITLY_AUTH_TOKEN")
-        if not token:
-            raise ValueError("BITLY_AUTH_TOKEN environment variable not set")
-
-        headers = {
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-        }
-        body = {"domain": "bit.ly", "long_url": long_url}
-        try:
-            resp = requests.post(
-                "https://api-ssl.bitly.com/v4/shorten",
-                headers=headers,
-                json=body,
-            )
-            resp.raise_for_status()
-            data = resp.json()
-            return data.get("link", long_url)
-        except Exception:
-            return long_url
-
     def get_bitly_url(self, long_url: str, token: Optional[str] = None) -> str:
         """Return a Bitly shortened URL or the original on failure."""
         auth = token or self.bitly_token
@@ -745,4 +708,3 @@ class SkytapClient:
         return self._request(
             "PUT", f"/configurations/{env_id}/networks/{network_id}", json=body
         )
-
